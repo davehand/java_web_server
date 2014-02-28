@@ -1,4 +1,6 @@
 //Authors: Dave Hand and Joe Maco
+//For texting, visit localhost:6789/index.html
+//and localhost:6789/galaxy.jpg
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -93,12 +95,12 @@ final class HttpRequest implements Runnable {
     String contentTypeLine = null;
     String entityBody = null;
     if (fileExists) {
-      statusLine = "Server response";
-      contentTypeLine = "Content-type: " + contentType(fileName) + CRLF;
+      statusLine = "HTTP/1.1 200 OK" + CRLF;
+      contentTypeLine = "Content-Type: " + contentType(fileName) + CRLF;
     }
     else {
-      statusLine = "No file\n";
-      contentTypeLine = "No content\n";
+      statusLine = "HTTP/1.1 404 Not Found" + CRLF;
+      contentTypeLine = "Content-Type: text/html" + CRLF;
       entityBody = "<HTML>" + "<HEAD><TITLE>Not Found</TITLE></HEAD>" + "<BODY>Not Found</BODY></HTML>";
     }
 
